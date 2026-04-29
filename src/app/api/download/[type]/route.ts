@@ -49,7 +49,7 @@ export async function GET(
 
   const buffer = await generateWordDocument(doc.content, title, generatorOptions)
 
-  return new NextResponse(buffer, {
+  return new NextResponse(new Uint8Array(buffer), {
     headers: {
       'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
       'Content-Disposition': `attachment; filename="${filename}"`,
