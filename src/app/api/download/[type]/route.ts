@@ -5,7 +5,7 @@ import { generateWordDocument } from '@/lib/docx-generator'
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { type: string } }
+  { params }: { params: Promise<{ type: string }> }
 ) {
   const token = req.cookies.get(COOKIE_NAME)?.value
   if (!token) return NextResponse.json({ error: 'Não autenticado' }, { status: 401 })
@@ -13,7 +13,7 @@ export async function GET(
   const payload = await verifyToken(token)
   if (!payload) return NextResponse.json({ error: 'Token inválido' }, { status: 401 })
 
-  const docType = params.type
+  const docType = (await params).type
   if (!['blueprint', 'action-plan', 'complete'].includes(docType)) {
     return NextResponse.json({ error: 'Tipo inválido' }, { status: 400 })
   }
@@ -60,7 +60,7 @@ export async function GET(
 
 export async function HEAD(
   req: NextRequest,
-  { params }: { params: { type: string } }
+  { params }: { params: Promise<{ type: string }> }
 ) {
   const token = req.cookies.get(COOKIE_NAME)?.value
   if (!token) return new NextResponse(null, { status: 401 })
@@ -69,7 +69,7 @@ export async function HEAD(
   if (!payload) return new NextResponse(null, { status: 401 })
 
   const doc = await prisma.document.findUnique({
-    where: { userId_type: { userId: payload.userId, type: params.type } },
+    where: { userId_type: { userId: payload.userId, type: (await params).type } },
   })
 
   return new NextResponse(null, { status: doc ? 200 : 404 })
