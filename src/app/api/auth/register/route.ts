@@ -13,14 +13,35 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'A senha deve ter pelo menos 6 caracteres.' }, { status: 400 })
     }
 
-    const existing = await prisma.user.findUnique({ where: { email: email.toLowerCase().trim() } })
+    const normalizedEmail = email.toLowerCase().trim()
+
+    const authorized = await prisma.authorizedEmail.findUnique({ where: { email: normalizedEmail } })
+    if (!authorized) {
+      return NextResponse.json(
+        { error: 'E-mail não autorizado. Adquira o Método Stack para criar sua conta.' },
+        { status: 403 }
+      )
+    }
+    if (authorized.usedAt) {
+      return NextResponse.json(
+        { error: 'Esse e-mail já foi utilizado para criar uma conta. Acesse a página de login.' },
+        { status: 409 }
+      )
+    }
+
+    const existing = await prisma.user.findUnique({ where: { email: normalizedEmail } })
     if (existing) {
       return NextResponse.json({ error: 'E-mail já cadastrado.' }, { status: 409 })
     }
 
     const passwordHash = await hashPassword(password)
     const user = await prisma.user.create({
-      data: { name: name.trim(), email: email.toLowerCase().trim(), passwordHash },
+      data: { name: name.trim(), email: normalizedEmail, passwordHash },
+    })
+
+    await prisma.authorizedEmail.update({
+      where: { email: normalizedEmail },
+      data: { usedAt: new Date() },
     })
 
     const token = await createToken(user.id)
