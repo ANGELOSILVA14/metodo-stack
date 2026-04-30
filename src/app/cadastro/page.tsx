@@ -43,11 +43,8 @@ export default function CadastroPage() {
     <div className="min-h-screen bg-navy-900 flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 mb-6">
-            <div className="w-9 h-9 bg-gold-500 rounded-lg flex items-center justify-center font-bold text-navy-900">
-              MS
-            </div>
-            <span className="font-bold text-white text-lg">Método Stack</span>
+          <Link href="/" className="inline-flex items-center justify-center mb-6">
+            <img src="/metodostack/images/logo.svg" alt="Método Stack" className="h-10" style={{filter: 'brightness(0) invert(1)'}} />
           </Link>
           <h1 className="text-2xl font-bold text-white">Crie sua conta</h1>
           <p className="text-white/60 mt-1 text-sm">Comece a construir sua comunidade hoje.</p>
