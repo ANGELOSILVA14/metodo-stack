@@ -6,6 +6,12 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  async redirects() {
+    return [
+      { source: '/metodostack', destination: '/metodostack/index.html', permanent: false },
+      { source: '/membrometodostack', destination: '/metodo', permanent: false },
+    ]
+  },
 }
 
 module.exports = nextConfig

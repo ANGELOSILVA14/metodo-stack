@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Método Stack | Construa a Estratégia Completa da Sua Comunidade</title>
+  <meta name="description" content="Você não tem um problema de comunidade. Você tem um problema de estratégia. O Método Stack entrega o Blueprint + Plano de Ação da sua comunidade em horas, por R$ 297.">
+  <meta property="og:title" content="Você não tem um problema de comunidade. Você tem um problema de estratégia.">
+  <meta property="og:description" content="O Método Stack entrega o projeto estratégico completo da sua comunidade, Blueprint + Plano de Ação, em horas.">
+  <meta property="og:type" content="website">
+
+  <!-- REPLACE: Meta Pixel -->
+  <!-- REPLACE: GTM container -->
+  <!-- REPLACE: Google Ads tag -->
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #1D4ED8, #1E3A8A);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .btn-cta {
+      background: linear-gradient(135deg, #059669, #047857);
+      color: white;
+      font-weight: 800;
+      border-radius: 0.875rem;
+      box-shadow: 0 10px 30px rgba(5,150,105,0.35);
+      transition: all 0.25s ease;
+      display: inline-block;
+      text-align: center;
+    }
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(5,150,105,0.45); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #1D4ED8, #1E3A8A);
+      color: white;
+      font-weight: 700;
+      border-radius: 0.75rem;
+      box-shadow: 0 8px 20px rgba(29,78,216,0.3);
+      transition: all 0.25s ease;
+      display: inline-block;
+      text-align: center;
+    }
+    .btn-primary:hover { transform: translateY(-2px); }
+
+    .section-dark { background: linear-gradient(135deg, #0A1628 0%, #0F2D4E 100%); }
+    .section-violet { background: linear-gradient(135deg, #1E3A8A 0%, #1D4ED8 100%); }
+
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .faq-icon { transition: transform 0.3s ease; }
+
+    .value-card {
+      border-left: 4px solid #1D4ED8;
+      background: white;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .value-card-bonus { border-left-color: #F59E0B; background: #FFFBEB; }
+
+    .strikethrough {
+      text-decoration: line-through;
+      color: #94A3B8;
+    }
+
+    @keyframes slideInLeft {
+      from { transform: translateX(-110%); opacity: 0; }
+      to   { transform: translateX(0);     opacity: 1; }
+    }
+    @keyframes slideOutLeft {
+      from { transform: translateX(0);     opacity: 1; }
+      to   { transform: translateX(-110%); opacity: 0; }
+    }
+    .sp-enter { animation: slideInLeft 0.4s ease forwards; }
+    .sp-exit  { animation: slideOutLeft 0.4s ease forwards; }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8125rem;
+      color: #94A3B8;
+    }
+    .trust-dot { width: 6px; height: 6px; border-radius: 50%; background: #1D4ED8; flex-shrink: 0; }
+
+    .photo-placeholder {
+      background: linear-gradient(135deg, #DBEAFE, #BFDBFE);
+      border-radius: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #1D4ED8;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-align: center;
+      padding: 1.5rem;
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-900 antialiased">
+
+<!-- ========== LGPD BANNER ========== -->
+<div id="lgpd-banner" class="fixed bottom-0 left-0 right-0 z-[200] bg-slate-900 text-white py-3 px-4" style="display:none;">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+    <p class="text-sm text-slate-300">Este site usa cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa <a href="#" class="underline text-blue-300">Política de Privacidade</a>.</p>
+    <button onclick="acceptCookies()" class="bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold text-sm whitespace-nowrap hover:bg-blue-700 transition">Aceitar</button>
+  </div>
+</div>
+
+<!-- ========== EXIT INTENT POPUP ========== -->
+<div id="exit-popup" class="hidden fixed inset-0 z-[300] bg-black/70 flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative">
+    <button onclick="closeExitPopup()" class="absolute top-4 right-5 text-slate-400 hover:text-slate-600 text-3xl leading-none">&times;</button>
+    <div class="text-5xl mb-4 text-center">⏳</div>
+    <h3 class="text-2xl font-black text-slate-900 mb-3 text-center">Vai sair sem o projeto da sua comunidade?</h3>
+    <p class="text-slate-600 mb-6 text-center">Método Stack + Blueprint + Plano de Ação. Garantia de 7 dias, sem risco nenhum.</p>
+    <a href="#oferta" class="btn-cta w-full block py-4 text-lg">Quero meu Blueprint agora →</a>
+    <button onclick="closeExitPopup()" class="w-full text-center text-slate-400 text-sm mt-3 hover:text-slate-600 transition">Não, vou continuar sem estratégia</button>
+  </div>
+</div>
+
+<!-- ========== SOCIAL PROOF NOTIFICATION ========== -->
+<div id="social-proof" class="hidden fixed bottom-24 md:bottom-8 left-4 z-[150] max-w-xs pointer-events-none">
+  <div class="bg-white rounded-xl shadow-xl p-3 flex items-center gap-3 border border-blue-100">
+    <div id="sp-avatar" class="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">F</div>
+    <p id="sp-text" class="text-xs text-slate-700"><strong>Fernanda M.</strong> de São Paulo acabou de entrar</p>
+  </div>
+</div>
+
+<!-- ========== STICKY CTA (MOBILE) ========== -->
+<div class="fixed bottom-0 left-0 right-0 z-50 p-3 bg-white/95 backdrop-blur-sm shadow-2xl border-t border-slate-100 md:hidden">
+  <a href="#oferta" class="btn-cta w-full block py-3 text-base">
+    Quero meu Blueprint →
+  </a>
+  <p class="text-center text-xs text-slate-400 mt-1">Garantia de 7 dias, risco zero</p>
+</div>
+
+
+<!-- ========== NAVIGATION ========== -->
+<nav class="bg-white/95 backdrop-blur-sm border-b border-slate-100 sticky top-0 z-40">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <img src="/metodostack/images/logo.svg" alt="Método Stack" class="h-10">
+    <a href="#oferta" class="btn-primary text-sm py-2 px-5 hidden sm:inline-block">
+      Garantir acesso →
+    </a>
+  </div>
+</nav>
+
+<!-- ========== SEÇÃO 1: HERO ========== -->
+<section class="py-16 md:py-24 bg-white overflow-hidden">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+      <!-- Copy -->
+      <div>
+        <div class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 text-sm font-semibold px-4 py-2 rounded-full mb-6">
+          <span class="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></span>
+          Acesso imediato &bull; Preço de lançamento
+        </div>
+        <h1 class="text-4xl md:text-5xl font-black text-slate-900 leading-tight mb-6">
+          Você não tem um problema de comunidade.<br>
+          <span class="gradient-text">Você tem um problema de estratégia.</span>
+        </h1>
+        <p class="text-xl text-slate-600 mb-8 leading-relaxed">
+          A maioria dos empreendedores cria comunidades por impulso, e assiste elas morrerem em silêncio. O Método Stack entrega o projeto estratégico completo da sua comunidade em horas: <strong>Blueprint + Plano de Ação</strong>, prontos para sair do papel.
+        </p>
+        <a href="#oferta" class="btn-cta text-lg py-4 px-8 mb-6 w-full sm:w-auto">
+          Quero estruturar minha comunidade →
+        </a>
+        <div class="flex flex-wrap gap-4 mt-2">
+          <div class="trust-item"><div class="trust-dot"></div> Acesso imediato</div>
+          <div class="trust-item"><div class="trust-dot"></div> Garantia de 7 dias</div>
+          <div class="trust-item"><div class="trust-dot"></div> 7 anos de experiência</div>
+        </div>
+      </div>
+
+      <!-- Blueprint Mockup -->
+      <div class="flex justify-center lg:justify-end">
+        <div class="bg-white rounded-2xl shadow-2xl p-6 max-w-sm w-full border border-slate-100">
+          <div class="h-48 mb-5 bg-white rounded-xl flex items-center justify-center p-6">
+            <img src="/metodostack/images/logo.svg" alt="Método Stack" class="w-full h-full object-contain">
+          </div>
+          <div class="space-y-3">
+            <div class="flex items-center gap-3 p-3 bg-blue-50 rounded-xl">
+              <div class="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              </div>
+              <div>
+                <div class="font-bold text-sm text-slate-900">Blueprint da Comunidade</div>
+                <div class="text-xs text-slate-500">Projeto estratégico completo</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 p-3 bg-emerald-50 rounded-xl">
+              <div class="w-9 h-9 bg-emerald-600 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+              </div>
+              <div>
+                <div class="font-bold text-sm text-slate-900">Plano de Ação</div>
+                <div class="text-xs text-slate-500">Próximos passos em ordem</div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-5 pt-4 border-t border-slate-100 text-center">
+            <span class="text-sm text-slate-500">Blueprint + Plano de Ação prontos em horas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TRUST BAR ========== -->
+<div class="bg-slate-900 py-4">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex flex-wrap justify-center gap-6 md:gap-10">
+      <div class="trust-item"><div class="trust-dot"></div> 7 anos criando comunidades</div>
+      <div class="trust-item"><div class="trust-dot"></div> Múltiplos projetos reais</div>
+      <div class="trust-item"><div class="trust-dot"></div> Blueprint + Plano de Ação em horas</div>
+      <div class="trust-item"><div class="trust-dot"></div> Garantia de 7 dias</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SEÇÃO 2: DOR ========== -->
+<section class="section-dark py-16 md:py-24">
+  <div class="max-w-3xl mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-black text-white text-center mb-10">
+      Você já viu isso acontecer.<br>
+      <span class="text-blue-300">Talvez já tenha vivido.</span>
+    </h2>
+    <div class="space-y-5 text-lg text-slate-300 leading-relaxed">
+      <p>Um empreendedor decide criar uma comunidade. Escolhe uma plataforma, abre o grupo, convida as primeiras pessoas.</p>
+      <p>No começo tem energia. Algumas interações, alguns comentários, uma sensação boa de que está funcionando.</p>
+      <p>Três meses depois o grupo está silencioso. As pessoas pararam de participar. O empreendedor parou de postar porque não sabia mais o que dizer. E a comunidade que ia ser o diferencial do negócio virou mais uma coisa pela metade.</p>
+      <p class="text-white font-semibold">Isso não aconteceu por falta de esforço.<br>Isso não aconteceu por falta de dedicação.</p>
+      <p class="text-2xl font-black text-white text-center py-4 border-t border-b border-white/10 my-6">
+        Aconteceu porque nunca houve estratégia.
+      </p>
+      <p class="text-center text-xl text-blue-300 font-bold">E no fundo, você sabe disso.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SEÇÃO 3: POR QUE AS COMUNIDADES FALHAM ========== -->
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-3xl mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-black text-slate-900 text-center mb-4">
+      O problema não é a plataforma.<br>
+      <span class="gradient-text">Não é o conteúdo. É a falta de fundação.</span>
+    </h2>
+    <div class="bg-blue-50 border border-blue-200 rounded-2xl p-6 mb-10">
+      <p class="text-slate-800 text-lg leading-relaxed">Quando sua comunidade foi criada, você já sabia exatamente <strong>quem eram as pessoas certas para entrar</strong>, <strong>o que as faria ficar</strong>, <strong>como ela geraria resultado para o negócio</strong> e <strong>qual seria o modelo financeiro</strong> por trás de tudo isso?</p>
+      <p class="text-blue-700 font-black text-xl mt-4">Se a resposta é não, o problema nunca foi o público.</p>
+    </div>
+
+    <p class="text-slate-800 font-bold text-lg mb-6">Toda comunidade que morre cedo tem o mesmo diagnóstico: foi construída <em>de fora para dentro</em>.</p>
+
+    <div class="space-y-3 mb-8">
+      <div class="flex items-start gap-3 p-3 bg-red-50 rounded-xl border border-red-100">
+        <span class="text-red-400 text-lg flex-shrink-0 mt-0.5">✗</span>
+        <p class="text-slate-700">Escolheu a ferramenta antes de definir o propósito</p>
+      </div>
+      <div class="flex items-start gap-3 p-3 bg-red-50 rounded-xl border border-red-100">
+        <span class="text-red-400 text-lg flex-shrink-0 mt-0.5">✗</span>
+        <p class="text-slate-700">Começou a postar antes de saber para quem</p>
+      </div>
+      <div class="flex items-start gap-3 p-3 bg-red-50 rounded-xl border border-red-100">
+        <span class="text-red-400 text-lg flex-shrink-0 mt-0.5">✗</span>
+        <p class="text-slate-700">Criou regras quando o grupo já estava bagunçado</p>
+      </div>
+      <div class="flex items-start gap-3 p-3 bg-red-50 rounded-xl border border-red-100">
+        <span class="text-red-400 text-lg flex-shrink-0 mt-0.5">✗</span>
+        <p class="text-slate-700">Tentou engajar sem ter criado pertencimento</p>
+      </div>
+    </div>
+
+    <div class="bg-slate-900 text-white rounded-2xl p-6 text-center">
+      <p class="text-xl font-bold mb-1">Comunidade não é um grupo com nome bonito.</p>
+      <p class="text-xl font-bold text-blue-300">É um projeto. E projeto sem estrutura não fica de pé.</p>
+    </div>
+
+    <p class="text-slate-600 text-lg text-center mt-8">O que falta não é mais conteúdo, mais posts ou mais ferramentas. O que falta é saber exatamente <strong>quem é sua comunidade, o que ela oferece, como as pessoas entram, o que as faz ficar</strong> e como tudo isso se sustenta ao longo do tempo.</p>
+    <p class="text-center text-slate-800 font-bold text-xl mt-5">Sem isso, você vai continuar improvisando. E improviso não escala.</p>
+  </div>
+</section>
+
+<!-- ========== SEÇÃO 4: OS DOIS CAMINHOS ========== -->
+<section class="py-16 md:py-24 bg-slate-50">
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-black text-slate-900 text-center mb-12">
+      Até agora, você tinha duas opções.
+    </h2>
+    <div class="grid md:grid-cols-2 gap-6 mb-12">
+      <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+        <div class="text-3xl mb-4">🧩</div>
+        <h3 class="font-black text-xl text-slate-900 mb-3">Fazer sozinho</h3>
+        <p class="text-slate-600 leading-relaxed">Você pesquisa, compra um curso, assiste pela metade e não coloca nada em prática. Tenta montar a estratégia por conta própria e aprende no erro. O resultado costuma ser uma comunidade que funciona mais ou menos, ou que simplesmente não decola.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+        <div class="text-3xl mb-4">💼</div>
+        <h3 class="font-black text-xl text-slate-900 mb-3">Contratar um especialista</h3>
+        <p class="text-slate-600 leading-relaxed">Um especialista conduz sessões para entender sua visão e construir a estratégia da sua comunidade do zero. É um trabalho profundo e personalizado, e o investimento reflete isso.</p>
+        <div class="mt-4 bg-amber-50 border border-amber-200 rounded-xl p-4">
+          <p class="text-sm font-bold text-amber-800">Investimento típico: R$&nbsp;10.000 a R$&nbsp;50.000, mais percentual de sucesso.</p>
+          <p class="text-xs text-amber-700 mt-1">Eu mesmo já cobrei valores assim por projetos desse tipo.</p>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <div class="inline-block bg-blue-600 text-white px-8 py-3 rounded-full text-xl font-black mb-6 shadow-lg">
+        Faltava uma terceira opção.
+      </div>
+      <p class="text-xl text-slate-700 max-w-2xl mx-auto mb-4 leading-relaxed">
+        Algo que entregasse a mesma profundidade estratégica de uma consultoria de alto nível, no tempo do empreendedor, no ritmo do empreendedor, e no preço que faz sentido para quem está construindo.
+      </p>
+      <p class="text-slate-500">Para a maioria dos empreendedores que estão lançando ou validando uma comunidade, esse investimento não é viável nesse momento.</p>
+      <p class="text-slate-500 mt-2">Em 2026, depois de 7 anos e múltiplos projetos reais, decidi criar essa terceira opção.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SEÇÃO 5: A SOLUÇÃO ========== -->
+<section class="section-violet py-16 md:py-24">
+  <div class="max-w-3xl mx-auto px-4 text-center">
+    <p class="text-blue-200 text-sm font-bold uppercase tracking-widest mb-4">A terceira opção</p>
+    <h2 class="text-5xl md:text-6xl font-black text-white mb-6">O Método Stack</h2>
+    <p class="text-xl text-blue-100 mb-10 leading-relaxed">
+      Uma ferramenta que guia você pela construção estratégica completa da sua comunidade, do propósito ao modelo financeiro, da identidade ao plano de ação, através de orientações e perguntas estratégicas que extraem o que está na sua cabeça e transformam em projeto.
+    </p>
+    <div class="grid sm:grid-cols-3 gap-4 mb-10 text-sm">
+      <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-white">
+        <div class="text-2xl mb-2">❌</div>
+        <p class="font-medium">Não é um curso que você vai assistir e deixar pela metade</p>
+      </div>
+      <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-white">
+        <div class="text-2xl mb-2">❌</div>
+        <p class="font-medium">Não é um ebook de 40 páginas que você vai salvar e nunca abrir</p>
+      </div>
+      <div class="bg-white/20 backdrop-blur rounded-xl p-4 text-white border-2 border-white/40">
+        <div class="text-2xl mb-2">✅</div>
+        <p class="font-bold">É uma ferramenta ativa: você usa, você responde, você recebe o projeto completo de sua comunidade.</p>
+      </div>
+    </div>
+    <p class="text-white font-bold text-xl mb-8">No final do processo, você sai com um arquivo único na plataforma — com tudo incluído:</p>
+    <div class="grid sm:grid-cols-2 gap-4 mb-6 text-left">
+      <div class="bg-white rounded-2xl p-6 shadow-xl">
+        <div class="text-4xl mb-3">📋</div>
+        <h3 class="font-black text-slate-900 text-lg mb-2">Blueprint da sua comunidade</h3>
+        <p class="text-slate-600 text-sm leading-relaxed">O projeto completo da sua comunidade em um único documento. Quem ela é, para quem existe, como as pessoas entram, o que as faz ficar e como tudo se sustenta financeiramente. Tudo definido, tudo documentado, pronto para executar.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 shadow-xl">
+        <div class="text-4xl mb-3">🎯</div>
+        <h3 class="font-black text-slate-900 text-lg mb-2">Plano de Ação</h3>
+        <p class="text-slate-600 text-sm leading-relaxed">Os próximos passos em ordem para tirar o projeto do papel. Você sai sabendo exatamente o que fazer primeiro, segundo e terceiro.</p>
+      </div>
+    </div>
+    <div class="bg-white/10 backdrop-blur rounded-xl px-5 py-4 mb-8 text-white text-sm text-center">
+      Blueprint, Plano de Ação e Bônus chegam juntos em um arquivo único assim que você conclui todas as etapas. &bull; <strong>Download em PDF disponível</strong>
+    </div>
+    <p class="text-blue-200 text-lg italic mb-10">Não é estratégia genérica. É a estratégia da <strong class="text-white not-italic">sua</strong> comunidade.</p>
+    <a href="#oferta" class="bg-white text-blue-700 font-black text-xl px-10 py-5 rounded-2xl shadow-2xl hover:shadow-xl transition hover:-translate-y-1 inline-block">
+      Quero meu Blueprint →
+    </a>
+  </div>
+</section>
+
+<!-- ========== SEÇÃO 6: AUTORIDADE ========== -->
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <!-- Foto -->
+      <div class="flex justify-center">
+        <div class="relative">
+          <img src="/metodostack/images/angelo.jpg" alt="Ângelo Silva" class="w-72 h-80 object-cover rounded-2xl shadow-xl">
+          <!-- Badge experiência -->
+          <div class="absolute -bottom-5 -right-5 bg-slate-900 text-white rounded-2xl p-4 shadow-2xl max-w-[190px]">
+            <div class="text-xs font-bold text-blue-300 mb-1 uppercase tracking-wide">Desde</div>
+            <div class="font-black text-white text-2xl">2019</div>
+            <div class="text-xs text-slate-400 mt-0.5">7 anos de campo real</div>
+          </div>
+        </div>
+      </div>
+      <!-- Copy -->
+      <div>
+        <p class="text-blue-600 font-bold text-sm uppercase tracking-widest mb-4">Por que eu posso te guiar</p>
+        <h2 class="text-4xl font-black text-slate-900 mb-6">Ângelo Silva</h2>
+        <div class="space-y-4 text-slate-700 text-lg leading-relaxed">
+          <p>Desde 2019, crio e gerencio comunidades reais, não como teoria de palco, mas como trabalho de campo.</p>
+          <p>Ao longo de 7 anos, trabalhei em contextos completamente diferentes: criei comunidades internas em empresas onde trabalhei, gerenciei uma comunidade empresarial por 5 anos, liderei uma comunidade de criatividade, criei comunidades para empresas de consultoria e tecnologia, e dei consultoria para creators.</p>
+          <p>Palestrei em grandes eventos, incluindo o <strong>Hacktown</strong>, o maior evento de criatividade e inovação da América Latina.</p>
+          <p>Sou Administrador, com duas pós-graduações voltadas a negócios e certificações internacionais em Liderança Ágil. Essa formação me deu uma visão ampla sobre comportamento, gestão e resultado.</p>
+          <p>Foi essa variedade que me permitiu identificar os padrões que funcionam, independente do nicho. <strong>O Método Stack é a síntese disso tudo.</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SEÇÃO 7: HISTÓRIA DO MÉTODO ========== -->
+<section class="py-16 md:py-24 bg-slate-50">
+  <div class="max-w-3xl mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-black text-slate-900 text-center mb-10">
+      Como o <span class="gradient-text">Método Stack</span> nasceu.
+    </h2>
+    <div class="space-y-6 text-lg text-slate-700 leading-relaxed">
+      <p>Existe um problema que não é falado abertamente no mercado de comunidades:</p>
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+        <p class="font-black text-slate-900 text-xl leading-snug">A maioria das pessoas que constroem comunidades não sabe o que está fazendo.</p>
+        <p class="text-slate-500 mt-2">E isso inclui empresas grandes, marcas conhecidas e profissionais experientes.</p>
+      </div>
+      <p>Não porque são incompetentes. Mas porque nunca tiveram acesso a um sistema de construção estratégica real. Foram na base do instinto, do "vi alguém fazendo assim", do "parece que funciona".</p>
+      <p>Nos primeiros anos trabalhando com comunidades, eu mesmo testemunhei isso de perto. Projeto após projeto, via o mesmo padrão se repetir: comunidade aberta com entusiasmo, silêncio aos três meses, abandono silencioso depois.</p>
+      <p>Com o tempo, fui identificando o que separa as que sobrevivem das que morrem. O que faz um membro se sentir parte de algo de verdade. O que transforma pertencimento em resultado de negócio.</p>
+      <div class="bg-blue-600 text-white rounded-2xl p-6 text-center space-y-2">
+        <p class="text-lg font-medium">Esses padrões viraram perguntas.</p>
+        <p class="text-lg font-medium">As perguntas viraram um processo.</p>
+        <p class="text-2xl font-black">O processo virou o Método Stack.</p>
+      </div>
+      <p class="text-center text-slate-500">O Método Stack não é teoria. É o destilado de tudo que funcionou em 7 anos de campo real.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SEÇÃO 8: PARA QUEM É ========== -->
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-black text-slate-900 text-center mb-12">
+      Para quem é o <span class="gradient-text">Método Stack</span>
+    </h2>
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Para quem é -->
+      <div>
+        <h3 class="font-black text-xl text-slate-900 mb-5 flex items-center gap-2">
+          <span class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-base">✓</span>
+          É para você se...
+        </h3>
+        <div class="space-y-3">
+          <div class="flex items-start gap-3 p-3 bg-green-50 rounded-xl">
+            <span class="text-green-500 text-lg flex-shrink-0">✅</span>
+            <p class="text-slate-700">Você quer criar uma comunidade do zero e não sabe por onde começar</p>
+          </div>
+          <div class="flex items-start gap-3 p-3 bg-green-50 rounded-xl">
+            <span class="text-green-500 text-lg flex-shrink-0">✅</span>
+            <p class="text-slate-700">Você já tentou construir uma comunidade e ela não decolou</p>
+          </div>
+          <div class="flex items-start gap-3 p-3 bg-green-50 rounded-xl">
+            <span class="text-green-500 text-lg flex-shrink-0">✅</span>
+            <p class="text-slate-700">Você tem uma comunidade ativa, mas quer redesenhar a estratégia para atingir melhores resultados</p>
+          </div>
+          <div class="flex items-start gap-3 p-3 bg-green-50 rounded-xl">
+            <span class="text-green-500 text-lg flex-shrink-0">✅</span>
+            <p class="text-slate-700">Você tem uma base de clientes ou seguidores e quer transformá-la em algo ativo</p>
+          </div>
+          <div class="flex items-start gap-3 p-3 bg-green-50 rounded-xl">
+            <span class="text-green-500 text-lg flex-shrink-0">✅</span>
+            <p class="text-slate-700">Você sabe que comunidade é estratégico para o negócio, mas ainda não tem o projeto</p>
+          </div>
+          <div class="flex items-start gap-3 p-3 bg-green-50 rounded-xl">
+            <span class="text-green-500 text-lg flex-shrink-0">✅</span>
+            <p class="text-slate-700">Você quer clareza antes de investir tempo e dinheiro construindo algo no escuro</p>
+          </div>
+        </div>
+      </div>
+      <!-- Para quem não é -->
+      <div>
+        <h3 class="font-black text-xl text-slate-900 mb-5 flex items-center gap-2">
+          <span class="w-8 h-8 bg-red-400 rounded-full flex items-center justify-center text-white text-base">✗</span>
+          Não é para você se...
+        </h3>
+        <div class="space-y-3">
+          <div class="flex items-start gap-3 p-3 bg-red-50 rounded-xl">
+            <span class="text-red-400 text-lg flex-shrink-0">❌</span>
+            <p class="text-slate-600">Você quer resultado sem fazer nenhum trabalho</p>
+          </div>
+          <div class="flex items-start gap-3 p-3 bg-red-50 rounded-xl">
+            <span class="text-red-400 text-lg flex-shrink-0">❌</span>
+            <p class="text-slate-600">Você já tem uma estratégia bem definida e só precisa de execução</p>
+          </div>
+          <div class="flex items-start gap-3 p-3 bg-red-50 rounded-xl">
+            <span class="text-red-400 text-lg flex-shrink-0">❌</span>
+            <p class="text-slate-600">Você acredita que estratégia não importa e que comunidade se constrói só com "autenticidade"</p>
+          </div>
+        </div>
+        <div class="mt-6 bg-slate-50 rounded-2xl p-5">
+          <p class="text-slate-600 text-sm leading-relaxed"><strong class="text-slate-800">Se você se viu nos primeiros itens</strong>, o Método Stack foi feito para você. Você tem o perfil de quem sai com resultado.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SEÇÃO 9: TRANSFORMAÇÃO ========== -->
+<section class="py-16 md:py-24 bg-slate-900">
+  <div class="max-w-5xl mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-black text-white text-center mb-4">
+      O que muda depois do <span class="text-blue-300">Método Stack</span>
+    </h2>
+    <p class="text-slate-400 text-center mb-10 text-lg">Não é uma transformação de 1 ano. Acontece quando você termina o processo.</p>
+
+    <!-- Desktop table -->
+    <div class="hidden md:block overflow-hidden rounded-2xl border border-slate-700">
+      <table class="w-full">
+        <thead>
+          <tr class="bg-slate-800">
+            <th class="py-4 px-6 text-left text-red-400 font-black border-r border-slate-700 w-1/2">😔 Antes</th>
+            <th class="py-4 px-6 text-left text-green-400 font-black w-1/2">🚀 Depois</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-t border-slate-700">
+            <td class="py-3 px-6 text-slate-400 border-r border-slate-700">Cria grupo por impulso, sem propósito</td>
+            <td class="py-3 px-6 text-slate-200">Começa com estratégia e direção</td>
+          </tr>
+          <tr class="border-t border-slate-700 bg-slate-800/40">
+            <td class="py-3 px-6 text-slate-400 border-r border-slate-700">Não sabe quem é o público certo</td>
+            <td class="py-3 px-6 text-slate-200">Perfil do membro ideal mapeado</td>
+          </tr>
+          <tr class="border-t border-slate-700">
+            <td class="py-3 px-6 text-slate-400 border-r border-slate-700">Posta sem saber o que dizer ou para quem</td>
+            <td class="py-3 px-6 text-slate-200">Sabe o que comunicar e como posicionar</td>
+          </tr>
+          <tr class="border-t border-slate-700 bg-slate-800/40">
+            <td class="py-3 px-6 text-slate-400 border-r border-slate-700">Improvisa a experiência dos membros</td>
+            <td class="py-3 px-6 text-slate-200">Modelo de entrada e permanência definido</td>
+          </tr>
+          <tr class="border-t border-slate-700">
+            <td class="py-3 px-6 text-slate-400 border-r border-slate-700">Não sabe como a comunidade vai se sustentar</td>
+            <td class="py-3 px-6 text-slate-200">Modelo financeiro desenhado</td>
+          </tr>
+          <tr class="border-t border-slate-700 bg-slate-800/40">
+            <td class="py-3 px-6 text-slate-400 border-r border-slate-700">Para de construir porque não tem clareza</td>
+            <td class="py-3 px-6 text-slate-200">Executa com Plano de Ação em mãos</td>
+          </tr>
+          <tr class="border-t border-slate-700">
+            <td class="py-3 px-6 text-slate-400 border-r border-slate-700">Acha que a culpa é do público</td>
+            <td class="py-3 px-6 text-slate-200">Sabe exatamente o que ajustar</td>
+          </tr>
+          <tr class="border-t border-slate-700 bg-slate-800/40">
+            <td class="py-3 px-6 text-slate-400 border-r border-slate-700">Projeto parado na cabeça</td>
+            <td class="py-3 px-6 text-green-400 font-semibold">Blueprint completo, pronto para sair do papel</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Mobile cards -->
+    <div class="md:hidden space-y-3" id="ba-mobile"></div>
+
+    <p class="text-blue-300 text-xl font-bold text-center mt-10">
+      Em horas, você sai de "não sei por onde começar" para "tenho o projeto estratégico completo em mãos".
+    </p>
+  </div>
+</section>
+
+<!-- ========== SEÇÃO 10: O QUE VOCÊ RECEBE ========== -->
+<section id="oferta" class="py-16 md:py-24 bg-white">
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-black text-slate-900 text-center mb-4">
+      Tudo que está incluído no <span class="gradient-text">Método Stack</span>
+    </h2>
+    <p class="text-center text-slate-500 mb-12 text-lg">Cada componente resolve uma parte da jornada. Juntos, entregam o projeto completo.</p>
+
+    <div class="space-y-4 mb-10">
+      <div class="value-card">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0 text-2xl">🛠️</div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-start justify-between gap-2">
+              <h3 class="font-black text-lg text-slate-900">O Método Stack, A Ferramenta Guiada</h3>
+              <span class="strikethrough text-sm whitespace-nowrap flex-shrink-0">R$&nbsp;1.097</span>
+            </div>
+            <p class="text-slate-600 mt-1 leading-relaxed">Um processo estruturado de perguntas e orientações estratégicas que guia você pela construção completa da sua comunidade, do propósito ao modelo financeiro. A experiência de uma consultoria de alto nível, no seu tempo e no seu ritmo.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="value-card">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0 text-2xl">📋</div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-start justify-between gap-2">
+              <h3 class="font-black text-lg text-slate-900">Blueprint da Comunidade</h3>
+              <span class="strikethrough text-sm whitespace-nowrap flex-shrink-0">R$&nbsp;497</span>
+            </div>
+            <p class="text-slate-600 mt-1 leading-relaxed">O projeto estratégico completo da sua comunidade, gerado a partir das suas respostas: propósito, público, identidade, modelo de entrada, posicionamento e modelo financeiro. Um documento que você guarda, compartilha com a equipe e usa como guia de construção.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="value-card">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0 text-2xl">🎯</div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-start justify-between gap-2">
+              <h3 class="font-black text-lg text-slate-900">Plano de Ação Personalizado</h3>
+              <span class="strikethrough text-sm whitespace-nowrap flex-shrink-0">R$&nbsp;297</span>
+            </div>
+            <p class="text-slate-600 mt-1 leading-relaxed">Os próximos passos em ordem de prioridade para tirar o projeto do papel. Nada genérico, é baseado no que você respondeu. Você sai sabendo exatamente o que fazer primeiro, segundo e terceiro.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="value-card value-card-bonus" style="border-left-color:#F59E0B;">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0 text-2xl">🎁</div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <span class="inline-block bg-amber-500 text-white text-xs font-bold px-2 py-0.5 rounded mb-2">BÔNUS</span>
+                <h3 class="font-black text-lg text-slate-900">Checklist de Lançamento, Os Primeiros 30 Dias</h3>
+              </div>
+              <span class="strikethrough text-sm whitespace-nowrap flex-shrink-0">R$&nbsp;106</span>
+            </div>
+            <p class="text-slate-600 mt-1 leading-relaxed">O roteiro dos primeiros 30 dias da sua comunidade: o que comunicar, como ativar os primeiros membros e quais são os indicadores que provam que está funcionando.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-xl px-5 py-4 mb-4 flex items-start gap-3">
+      <span class="text-blue-500 text-xl flex-shrink-0">📥</span>
+      <p class="text-slate-700 text-sm leading-relaxed">Blueprint, Plano de Ação e Bônus chegam juntos em <strong>um único arquivo na plataforma</strong>, assim que você conclui todas as etapas. <strong>Download em PDF disponível.</strong></p>
+    </div>
+
+    <div class="bg-slate-900 text-white rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <div class="text-slate-400 text-sm mb-1">Valor total</div>
+        <div class="text-2xl font-bold strikethrough text-slate-300" style="text-decoration:line-through;color:#94A3B8;">R$&nbsp;1.997</div>
+      </div>
+      <div class="text-center sm:text-right">
+        <div class="text-slate-400 text-sm mb-1">Seu investimento hoje</div>
+        <div class="text-5xl font-black text-white">R$&nbsp;297</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SEÇÃO 11: PREÇO + ANCORAGEM ========== -->
+<section id="checkout" class="py-16 md:py-24 bg-blue-50">
+  <div class="max-w-xl mx-auto px-4">
+
+    <h2 class="text-3xl font-black text-slate-900 text-center mb-8">Recapitulando tudo que você leva</h2>
+
+    <div class="bg-white rounded-2xl shadow-xl p-6 mb-6">
+      <div class="space-y-3 mb-6">
+        <div class="flex items-center justify-between py-2 border-b border-slate-100">
+          <span class="flex items-center gap-2 text-slate-700 text-sm"><span class="text-green-500">✅</span> Método Stack (ferramenta guiada)</span>
+          <span class="strikethrough text-sm">R$&nbsp;1.097</span>
+        </div>
+        <div class="flex items-center justify-between py-2 border-b border-slate-100">
+          <span class="flex items-center gap-2 text-slate-700 text-sm"><span class="text-green-500">✅</span> Blueprint da Comunidade</span>
+          <span class="strikethrough text-sm">R$&nbsp;497</span>
+        </div>
+        <div class="flex items-center justify-between py-2 border-b border-slate-100">
+          <span class="flex items-center gap-2 text-slate-700 text-sm"><span class="text-green-500">✅</span> Plano de Ação Personalizado</span>
+          <span class="strikethrough text-sm">R$&nbsp;297</span>
+        </div>
+        <div class="flex items-center justify-between py-2">
+          <span class="flex items-center gap-2 text-slate-700 text-sm"><span class="text-amber-500">🎁</span> Checklist de Lançamento</span>
+          <span class="strikethrough text-sm">R$&nbsp;106</span>
+        </div>
+      </div>
+      <div class="border-t-2 border-dashed border-blue-200 pt-5">
+        <div class="flex items-center justify-between mb-2 text-sm text-slate-500">
+          <span>Valor total:</span>
+          <span class="strikethrough">R$&nbsp;1.997</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="font-black text-slate-900">Seu investimento hoje:</span>
+          <div class="text-right">
+            <div class="text-4xl font-black text-blue-700">R$&nbsp;297</div>
+            <div class="text-xs text-slate-400">à vista ou 12x de R$&nbsp;29,70</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white border border-blue-200 rounded-xl p-4 mb-8 text-center">
+      <p class="text-slate-700 text-sm leading-relaxed"><strong>R$&nbsp;297 ÷ 365 dias = R$&nbsp;0,81 por dia.</strong><br>Menos do que um cafezinho, para ter o projeto estratégico completo da sua comunidade.</p>
+    </div>
+
+    <a href="SUBSTITUA_PELA_URL_DO_CHECKOUT" class="btn-cta w-full block py-5 text-xl mb-4">
+      Quero entrar no Método Stack → R$&nbsp;297
+    </a>
+    <p class="text-center text-xs text-slate-400 mb-6">Acesso imediato &bull; Garantia de 7 dias &bull; Compra 100% segura</p>
+    <div class="flex justify-center gap-3">
+      <span class="bg-slate-100 text-slate-500 text-xs font-bold px-3 py-1.5 rounded">VISA</span>
+      <span class="bg-slate-100 text-slate-500 text-xs font-bold px-3 py-1.5 rounded">MASTER</span>
+      <span class="bg-slate-100 text-slate-500 text-xs font-bold px-3 py-1.5 rounded">PIX</span>
+      <span class="bg-slate-100 text-slate-500 text-xs font-bold px-3 py-1.5 rounded">BOLETO</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SEÇÃO 12: GARANTIA ========== -->
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-2xl mx-auto px-4 text-center">
+    <div class="inline-flex items-center justify-center w-20 h-20 bg-green-100 rounded-full mb-6">
+      <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+      </svg>
+    </div>
+    <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-6">🛡️ Garantia de 7 Dias</h2>
+    <div class="bg-green-50 border border-green-200 rounded-2xl p-8 text-left space-y-4">
+      <p class="text-lg text-slate-700 leading-relaxed">Entre agora. Use o Método Stack. Construa seu Blueprint e seu Plano de Ação.</p>
+      <p class="text-lg text-slate-700 leading-relaxed">Se em 7 dias você sentir que não valeu cada centavo, manda um e-mail e eu devolvo 100% do investimento. Sem perguntas. Sem formulários. Sem burocracia.</p>
+      <div class="bg-white rounded-2xl p-5 border border-green-200 text-center">
+        <p class="text-2xl font-black text-green-700">O risco é 100% meu.</p>
+        <p class="text-slate-500 mt-1">Você não arrisca nada.</p>
+      </div>
+      <p class="text-slate-600 text-sm leading-relaxed">Por que 7 dias? Porque a maioria das pessoas conclui o processo em poucas horas. Em 7 dias, você já tem o Blueprint na mão. Se não valeu, me avisa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SEÇÃO 13: FAQ ========== -->
+<section class="py-16 md:py-24 bg-slate-50">
+  <div class="max-w-3xl mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-black text-slate-900 text-center mb-12">Perguntas frequentes</h2>
+    <div class="space-y-3">
+
+      <div class="border border-slate-200 rounded-xl overflow-hidden bg-white">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left font-semibold text-slate-900 hover:bg-slate-50 transition">
+          <span>Preciso entender muito de comunidades para usar?</span>
+          <svg class="faq-icon w-5 h-5 text-blue-400 flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer"><p class="px-5 pb-5 text-slate-600 leading-relaxed">Não. A ferramenta guia você com exemplos reais em cada etapa. Se você tem uma ideia de comunidade, já é suficiente para começar.</p></div>
+      </div>
+
+      <div class="border border-slate-200 rounded-xl overflow-hidden bg-white">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left font-semibold text-slate-900 hover:bg-slate-50 transition">
+          <span>Minha comunidade ainda não existe. O Método Stack é para mim?</span>
+          <svg class="faq-icon w-5 h-5 text-blue-400 flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer"><p class="px-5 pb-5 text-slate-600 leading-relaxed">Sim. A ferramenta foi criada exatamente para quem quer começar do zero com estrutura, sem improvisar.</p></div>
+      </div>
+
+      <div class="border border-slate-200 rounded-xl overflow-hidden bg-white">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left font-semibold text-slate-900 hover:bg-slate-50 transition">
+          <span>Já tentei criar uma comunidade antes e não funcionou. Por que agora seria diferente?</span>
+          <svg class="faq-icon w-5 h-5 text-blue-400 flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer"><p class="px-5 pb-5 text-slate-600 leading-relaxed">Porque dessa vez você vai começar pela estratégia, não pelo grupo. O Método Stack resolve exatamente o que fez a comunidade anterior não decolar.</p></div>
+      </div>
+
+      <div class="border border-slate-200 rounded-xl overflow-hidden bg-white">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left font-semibold text-slate-900 hover:bg-slate-50 transition">
+          <span>O Blueprint é um template genérico?</span>
+          <svg class="faq-icon w-5 h-5 text-blue-400 flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer"><p class="px-5 pb-5 text-slate-600 leading-relaxed">Não. Cada documento é gerado com base nas suas respostas. Duas pessoas que respondem de formas diferentes recebem documentos completamente diferentes.</p></div>
+      </div>
+
+      <div class="border border-slate-200 rounded-xl overflow-hidden bg-white">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left font-semibold text-slate-900 hover:bg-slate-50 transition">
+          <span>Para quais tipos de comunidade funciona?</span>
+          <svg class="faq-icon w-5 h-5 text-blue-400 flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer"><p class="px-5 pb-5 text-slate-600 leading-relaxed">Para qualquer comunidade aplicada a negócios: clientes, parceiros, creators, aprendizado, interna ou de nicho.</p></div>
+      </div>
+
+      <div class="border border-slate-200 rounded-xl overflow-hidden bg-white">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left font-semibold text-slate-900 hover:bg-slate-50 transition">
+          <span>Preciso ter uma audiência grande antes de usar?</span>
+          <svg class="faq-icon w-5 h-5 text-blue-400 flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer"><p class="px-5 pb-5 text-slate-600 leading-relaxed">Não. O Método Stack funciona independente do tamanho da sua audiência atual.</p></div>
+      </div>
+
+      <div class="border border-slate-200 rounded-xl overflow-hidden bg-white">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left font-semibold text-slate-900 hover:bg-slate-50 transition">
+          <span>Quanto tempo leva para completar?</span>
+          <svg class="faq-icon w-5 h-5 text-blue-400 flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer"><p class="px-5 pb-5 text-slate-600 leading-relaxed">Depende do seu ritmo. Muitas pessoas concluem toda a criação estratégica em um único dia de foco. Você tem acesso permanente, então pode ir no seu tempo, sem pressão.</p></div>
+      </div>
+
+      <div class="border border-slate-200 rounded-xl overflow-hidden bg-white">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left font-semibold text-slate-900 hover:bg-slate-50 transition">
+          <span>Posso refazer o processo depois?</span>
+          <svg class="faq-icon w-5 h-5 text-blue-400 flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer"><p class="px-5 pb-5 text-slate-600 leading-relaxed">O acesso é para um projeto. Depois de concluído, o arquivo com Blueprint, Plano de Ação e Bônus fica disponível na plataforma para acessar e fazer o download em PDF sempre que precisar. Cada acesso é dedicado a uma comunidade.</p></div>
+      </div>
+
+      <div class="border border-slate-200 rounded-xl overflow-hidden bg-white">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left font-semibold text-slate-900 hover:bg-slate-50 transition">
+          <span>Como funciona a garantia?</span>
+          <svg class="faq-icon w-5 h-5 text-blue-400 flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer"><p class="px-5 pb-5 text-slate-600 leading-relaxed">7 dias de garantia incondicional. Se por qualquer motivo você não ficar satisfeito, devolução de 100% sem perguntas. Manda e-mail para <a href="mailto:angeloagentead@gmail.com" class="text-blue-600 underline">angeloagentead@gmail.com</a>.</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== SEÇÃO 14: CTA FINAL ========== -->
+<section class="section-dark py-16 md:py-24">
+  <div class="max-w-2xl mx-auto px-4 text-center">
+    <h2 class="text-3xl md:text-4xl font-black text-white mb-8">
+      Chega de improvisar.<br>
+      <span class="text-blue-300">Sua comunidade merece uma estratégia.</span>
+    </h2>
+    <div class="space-y-4 text-lg text-slate-300 text-left mb-10 leading-relaxed">
+      <p>A diferença entre uma comunidade que engaja e uma que morre em silêncio começa antes do primeiro membro entrar.</p>
+      <p>Começa agora.</p>
+    </div>
+    <div class="bg-white/10 rounded-2xl p-6 mb-8 space-y-3 text-left border border-white/10">
+      <p class="text-blue-200 font-semibold">✓ Você já sabe que precisa de estratégia.</p>
+      <p class="text-blue-200 font-semibold">✓ Você já entendeu que o problema nunca foi o público.</p>
+    </div>
+    <p class="text-2xl font-black text-white mb-8">O próximo passo é seu.</p>
+    <a href="SUBSTITUA_PELA_URL_DO_CHECKOUT" class="btn-cta text-xl py-5 px-10 inline-block mb-4">
+      Quero utilizar o Método Stack agora, R$&nbsp;297
+    </a>
+    <p class="text-slate-400 text-sm mb-12">Acesso imediato &bull; Garantia de 7 dias &bull; Risco zero</p>
+
+    <!-- P.S. -->
+    <div class="bg-white/5 rounded-2xl p-6 text-left space-y-4 border border-white/10">
+      <p class="text-slate-300 leading-relaxed"><strong class="text-white">P.S.</strong> Se você leu até aqui, é porque reconheceu algo. A comunidade parada, a tentativa que não decolou, a sensação de que falta uma base mais sólida. O Método Stack foi criado para resolver exatamente isso. E com a Garantia de 7 dias, você não arrisca nada. O risco é 100% meu.</p>
+      <p class="text-slate-300 leading-relaxed"><strong class="text-white">P.P.S.</strong> R$&nbsp;297 é o preço promocional. Daqui alguns dias o preço será revisado. Entrar agora é garantir o menor investimento possível por um produto que só vai ficar mais caro.</p>
+      <a href="SUBSTITUA_PELA_URL_DO_CHECKOUT" class="text-blue-300 font-bold hover:text-blue-200 transition">Garantir minha vaga agora →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="bg-slate-900 border-t border-slate-800 py-8">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-4">
+      <img src="/metodostack/images/logo.svg" alt="Método Stack" class="h-8" style="filter:brightness(0) invert(1);">
+      <div class="flex gap-6 text-sm text-slate-400">
+        <a href="#" class="hover:text-white transition">Política de Privacidade</a>
+        <a href="#" class="hover:text-white transition">Termos de Uso</a>
+        <a href="mailto:angeloagentead@gmail.com" class="hover:text-white transition">Contato</a>
+      </div>
+      <p class="text-slate-500 text-xs text-center md:text-right">© 2026 Ângelo Silva, Método Stack<br>Todos os direitos reservados.</p>
+    </div>
+    <p class="text-slate-600 text-xs text-center border-t border-slate-800 pt-4">Este produto é um infoproduto digital. Os resultados podem variar conforme o nível de dedicação e aplicação de cada pessoa.</p>
+  </div>
+</footer>
+
+<!-- ===== CHAT WIDGET ===== -->
+<div id="chat-widget" class="fixed bottom-24 md:bottom-6 right-4 z-50">
+
+  <!-- Chat Panel -->
+  <div id="chat-panel" class="mb-3 w-80 bg-white rounded-2xl shadow-2xl border border-slate-200" style="display:none;">
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-blue-800 to-blue-600 p-4 flex items-center justify-between rounded-t-2xl">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-white font-black text-sm">Â</div>
+        <div>
+          <p class="text-white font-bold text-sm leading-tight">Ângelo Silva</p>
+          <p class="text-blue-200 text-xs">Especialista em Comunidades</p>
+        </div>
+      </div>
+      <button onclick="toggleChat()" class="text-white/70 hover:text-white text-2xl leading-none font-light">&times;</button>
+    </div>
+
+    <!-- Messages area -->
+    <div id="chat-messages" class="px-4 pt-4 pb-2 overflow-y-auto" style="max-height:120px;">
+      <div class="bg-blue-50 rounded-xl rounded-tl-none p-3 text-sm text-slate-700 max-w-[90%]">
+        Olá! Escolha sua dúvida abaixo. 👇
+      </div>
+    </div>
+
+    <!-- Quick Questions -->
+    <div id="chat-questions" class="px-3 pt-1 pb-2">
+      <p class="text-xs text-slate-400 font-semibold uppercase tracking-wide mb-2 px-1">Suas dúvidas:</p>
+      <div class="space-y-1.5">
+        <button onclick="chatAnswer(0)" class="w-full text-left text-sm bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 rounded-xl px-3 py-2 text-slate-700 transition">O que é o Método Stack?</button>
+        <button onclick="chatAnswer(1)" class="w-full text-left text-sm bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 rounded-xl px-3 py-2 text-slate-700 transition">Como funciona na prática?</button>
+        <button onclick="chatAnswer(2)" class="w-full text-left text-sm bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 rounded-xl px-3 py-2 text-slate-700 transition">Para quem é?</button>
+        <button onclick="chatAnswer(3)" class="w-full text-left text-sm bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 rounded-xl px-3 py-2 text-slate-700 transition">Quanto tempo leva?</button>
+        <button onclick="chatAnswer(4)" class="w-full text-left text-sm bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 rounded-xl px-3 py-2 text-slate-700 transition">Serve para qualquer nicho?</button>
+        <button onclick="chatAnswer(5)" class="w-full text-left text-sm bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 rounded-xl px-3 py-2 text-slate-700 transition">E se não funcionar para mim?</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Toggle Button -->
+  <button onclick="toggleChat()" id="chat-btn"
+    class="relative w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all hover:scale-110"
+    style="background:linear-gradient(135deg,#1D4ED8,#1E3A8A);"
+    title="Tire suas dúvidas">
+    <svg id="chat-icon-open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <svg id="chat-icon-close" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="hidden"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    <!-- Notification dot -->
+    <span id="chat-dot" class="absolute top-0 right-0 w-4 h-4 bg-red-500 rounded-full border-2 border-white text-white text-xs flex items-center justify-center font-bold">1</span>
+  </button>
+</div>
+
+<!-- Spacer for mobile sticky CTA -->
+<div class="h-20 md:hidden"></div>
+
+<script>
+// ===== UTM PASSTHROUGH =====
+document.addEventListener('DOMContentLoaded', function() {
+  var params = new URLSearchParams(window.location.search);
+  var utmKeys = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','src','ref'];
+  var utmParams = {};
+  utmKeys.forEach(function(k){ if(params.get(k)) utmParams[k] = params.get(k); });
+  if(Object.keys(utmParams).length > 0){
+    document.querySelectorAll('a[href*="SUBSTITUA"]').forEach(function(link){
+      try {
+        var url = new URL(link.href);
+        Object.entries(utmParams).forEach(function(e){ url.searchParams.set(e[0],e[1]); });
+        link.href = url.toString();
+      } catch(e){}
+    });
+  }
+});
+
+
+// ===== FAQ ACCORDION =====
+function toggleFaq(btn){
+  var answer = btn.nextElementSibling;
+  var icon = btn.querySelector('.faq-icon');
+  var isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+  document.querySelectorAll('.faq-answer').forEach(function(a){ a.style.maxHeight='0px'; });
+  document.querySelectorAll('.faq-icon').forEach(function(i){ i.style.transform='rotate(0deg)'; });
+  if(!isOpen){
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+    icon.style.transform = 'rotate(180deg)';
+  }
+}
+
+// ===== SOCIAL PROOF =====
+var spData = [
+  {name:'Fernanda M.',city:'São Paulo',init:'F'},
+  {name:'Carlos R.',city:'Belo Horizonte',init:'C'},
+  {name:'Ana L.',city:'Rio de Janeiro',init:'A'},
+  {name:'Rafael S.',city:'Curitiba',init:'R'},
+  {name:'Juliana P.',city:'Porto Alegre',init:'J'},
+  {name:'Marcos T.',city:'Brasília',init:'M'},
+  {name:'Patrícia N.',city:'Fortaleza',init:'P'},
+  {name:'Diego V.',city:'Recife',init:'D'},
+  {name:'Camila F.',city:'Salvador',init:'C'},
+  {name:'Bruno L.',city:'Goiânia',init:'B'},
+  {name:'Letícia S.',city:'Manaus',init:'L'},
+  {name:'Thiago A.',city:'Florianópolis',init:'T'},
+];
+var spMsgs = [
+  ' acabou de entrar',
+  ' acabou de comprar',
+  ' acabou de garantir o acesso',
+  ' acabou de adquirir o Método Stack',
+];
+function showSP(){
+  var p = spData[Math.floor(Math.random()*spData.length)];
+  var msg = spMsgs[Math.floor(Math.random()*spMsgs.length)];
+  var el = document.getElementById('social-proof');
+  document.getElementById('sp-avatar').textContent = p.init;
+  document.getElementById('sp-text').innerHTML = '<strong>'+p.name+'</strong> de '+p.city+msg;
+  el.classList.remove('hidden','sp-exit');
+  el.classList.add('sp-enter');
+  setTimeout(function(){
+    el.classList.remove('sp-enter');
+    el.classList.add('sp-exit');
+    setTimeout(function(){ el.classList.add('hidden'); el.classList.remove('sp-exit'); }, 500);
+  }, 5500);
+}
+function scheduleSP(){
+  var d = (Math.random()*30+20)*1000;
+  setTimeout(function(){ showSP(); scheduleSP(); }, d);
+}
+setTimeout(scheduleSP, 12000);
+
+// ===== EXIT INTENT =====
+document.addEventListener('mouseout', function(e){
+  if(e.clientY<=0 && !sessionStorage.getItem('exitShown')){
+    document.getElementById('exit-popup').classList.remove('hidden');
+    sessionStorage.setItem('exitShown','1');
+  }
+});
+if(window.innerWidth < 768){
+  setTimeout(function(){
+    if(!sessionStorage.getItem('exitShown')){
+      document.getElementById('exit-popup').classList.remove('hidden');
+      sessionStorage.setItem('exitShown','1');
+    }
+  }, 60000);
+}
+function closeExitPopup(){ document.getElementById('exit-popup').classList.add('hidden'); }
+
+// ===== LGPD =====
+if(!localStorage.getItem('lgpdAccepted')){
+  setTimeout(function(){ document.getElementById('lgpd-banner').style.display='block'; }, 2500);
+}
+function acceptCookies(){
+  localStorage.setItem('lgpdAccepted','1');
+  document.getElementById('lgpd-banner').style.display='none';
+}
+
+// ===== CHAT WIDGET =====
+var chatOpen = false;
+var chatAnswers = [
+  {
+    q: 'O que é o Método Stack?',
+    a: 'É uma ferramenta estratégica que guia você passo a passo na criação da sua comunidade. No final, você recebe o Blueprint completo + Plano de Ação prontos para executar. É como uma consultoria escalável no seu ritmo.'
+  },
+  {
+    q: 'Como funciona na prática?',
+    a: 'Você acessa a ferramenta, responde perguntas estratégicas e o Método vai construindo sua estratégia junto com você. Em horas (ou dias, no seu ritmo), você tem o projeto completo da sua comunidade na mão.'
+  },
+  {
+    q: 'Para quem é?',
+    a: 'Para empreendedores, profissionais e empresas que querem criar ou reposicionar uma comunidade de forma estratégica. Se você já tentou e não saiu do papel, ou quer fazer certo desde o início, é para você.'
+  },
+  {
+    q: 'Quanto tempo leva?',
+    a: 'Depende do seu ritmo. Muitas pessoas concluem toda a criação estratégica em um único dia de foco. Você tem acesso permanente, então pode ir no seu tempo, sem pressão.'
+  },
+  {
+    q: 'Serve para qualquer nicho?',
+    a: 'Sim. O Método Stack funciona para qualquer segmento: negócios, saúde, educação, lifestyle, B2B, B2C. A estratégia é universal; o que muda é a aplicação para o seu público.'
+  },
+  {
+    q: 'E se não funcionar para mim?',
+    a: 'Você tem 7 dias de garantia total. Se por qualquer motivo não ficar satisfeito, devolvemos 100% do seu investimento. Sem perguntas, sem burocracia. O risco é todo nosso.'
+  }
+];
+function toggleChat(){
+  chatOpen = !chatOpen;
+  var panel = document.getElementById('chat-panel');
+  var iconOpen = document.getElementById('chat-icon-open');
+  var iconClose = document.getElementById('chat-icon-close');
+  var dot = document.getElementById('chat-dot');
+  if(chatOpen){
+    panel.style.display = 'block';
+    iconOpen.classList.add('hidden');
+    iconClose.classList.remove('hidden');
+    if(dot) dot.style.display = 'none';
+  } else {
+    panel.style.display = 'none';
+    iconOpen.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+  }
+}
+function chatAnswer(idx){
+  var msgs = document.getElementById('chat-messages');
+  var qs = document.getElementById('chat-questions');
+  var item = chatAnswers[idx];
+  var userBubble = document.createElement('div');
+  userBubble.className = 'flex justify-end mb-2';
+  userBubble.innerHTML = '<div class="bg-blue-600 text-white rounded-xl rounded-tr-none p-3 text-sm max-w-xs">'+item.q+'</div>';
+  msgs.appendChild(userBubble);
+  setTimeout(function(){
+    var botBubble = document.createElement('div');
+    botBubble.className = 'bg-blue-50 rounded-xl rounded-tl-none p-3 text-sm text-slate-700 mb-3 max-w-xs';
+    botBubble.textContent = item.a;
+    msgs.appendChild(botBubble);
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 350);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+setTimeout(function(){
+  var dot = document.getElementById('chat-dot');
+  if(dot && !chatOpen) dot.style.display = 'flex';
+}, 8000);
+
+// ===== BEFORE/AFTER MOBILE =====
+var baData = [
+  ['Cria grupo por impulso, sem propósito','Começa com estratégia e direção'],
+  ['Não sabe quem é o público certo','Perfil do membro ideal mapeado'],
+  ['Posta sem saber o que dizer','Sabe o que comunicar e como posicionar'],
+  ['Improvisa a experiência dos membros','Modelo de entrada e permanência definido'],
+  ['Não sabe como a comunidade se sustenta','Modelo financeiro desenhado'],
+  ['Para porque não tem clareza','Executa com Plano de Ação em mãos'],
+  ['Culpa o público','Sabe exatamente o que ajustar'],
+  ['Projeto parado na cabeça','Blueprint completo, pronto para sair do papel'],
+];
+var mob = document.getElementById('ba-mobile');
+if(mob){
+  mob.innerHTML = baData.map(function(row){
+    return '<div class="bg-slate-800 rounded-xl p-4">'
+      +'<div class="flex items-start gap-2 mb-2"><span class="text-red-400 text-xs font-black flex-shrink-0 mt-0.5">ANTES</span><span class="text-slate-400 text-sm">'+row[0]+'</span></div>'
+      +'<div class="flex items-start gap-2"><span class="text-green-400 text-xs font-black flex-shrink-0 mt-0.5">DEPOIS</span><span class="text-slate-200 text-sm font-medium">'+row[1]+'</span></div>'
+      +'</div>';
+  }).join('');
+}
+</script>
+</body>
+</html>
